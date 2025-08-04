@@ -1,0 +1,24 @@
+{
+  "name": "stdout",
+  "type": "module",
+  "version": "0.0.1",
+  "description": "stdout.shivoncall.com - thoughts, logs, scripts",
+  "author": "Shivanand Patil",
+  "license": "MIT",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^5.12.8"
+  },
+  "keywords": [
+    "blog",
+    "astro",
+    "terminal",
+    "hacker",
+    "stdout"
+  ]
+}
