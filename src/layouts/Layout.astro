@@ -47,15 +47,18 @@ const { title, description = "thoughts, logs, scripts" } = Astro.props;
   }
 
   body {
-    font-family: 'Courier New', 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-    background-color: #0a0a0a;
-    color: #00ff00;
-    line-height: 1.6;
+    font-family: 'Courier New', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', monospace;
+    background-color: #0d1117;
+    color: #e6edf3;
+    line-height: 1.7;
     overflow-x: hidden;
+    background-image: 
+      radial-gradient(circle at 25% 25%, rgba(0, 255, 0, 0.03) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, rgba(0, 255, 0, 0.02) 0%, transparent 50%);
   }
 
   .container {
-    max-width: 800px;
+    max-width: 900px;
     margin: 0 auto;
     padding: 2rem;
     min-height: 100vh;
@@ -65,21 +68,41 @@ const { title, description = "thoughts, logs, scripts" } = Astro.props;
 
   header {
     margin-bottom: 3rem;
-    border-bottom: 1px solid #00ff00;
-    padding-bottom: 1rem;
+    border-bottom: 2px solid #00ff41;
+    padding-bottom: 1.5rem;
+    position: relative;
+  }
+
+  header::before {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, #00ff41, #00cc33, #00ff41);
+    animation: scan 3s ease-in-out infinite;
+  }
+
+  @keyframes scan {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; }
   }
 
   .site-title {
-    font-size: 2rem;
+    font-size: 2.2rem;
     font-weight: bold;
     margin-bottom: 0.5rem;
-    text-shadow: 0 0 10px #00ff00;
+    text-shadow: 0 0 15px #00ff41, 0 0 30px #00ff41;
+    color: #00ff41;
+    letter-spacing: 1px;
   }
 
   .site-subtitle {
     font-size: 1.1rem;
-    color: #00cc00;
-    margin-bottom: 1rem;
+    color: #00cc33;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
   }
 
   nav {
@@ -88,16 +111,35 @@ const { title, description = "thoughts, logs, scripts" } = Astro.props;
   }
 
   nav a {
-    color: #00ff00;
+    color: #00ff41;
     text-decoration: none;
-    padding: 0.5rem 1rem;
+    padding: 0.7rem 1.2rem;
     border: 1px solid transparent;
     transition: all 0.3s ease;
+    font-weight: 500;
+    position: relative;
+    overflow: hidden;
+  }
+
+  nav a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.1), transparent);
+    transition: left 0.5s;
+  }
+
+  nav a:hover::before {
+    left: 100%;
   }
 
   nav a:hover {
-    border-color: #00ff00;
-    background-color: rgba(0, 255, 0, 0.1);
+    border-color: #00ff41;
+    background-color: rgba(0, 255, 65, 0.1);
+    box-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
   }
 
   main {
@@ -107,73 +149,107 @@ const { title, description = "thoughts, logs, scripts" } = Astro.props;
 
   h1, h2, h3, h4, h5, h6 {
     margin-bottom: 1rem;
-    color: #00ff00;
+    color: #00ff41;
+    font-weight: 600;
   }
 
   h1 {
-    font-size: 2rem;
+    font-size: 2.2rem;
+    text-shadow: 0 0 10px #00ff41;
   }
 
   h2 {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
+    text-shadow: 0 0 8px #00ff41;
+  }
+
+  h3 {
+    font-size: 1.3rem;
+    color: #00cc33;
   }
 
   p {
-    margin-bottom: 1rem;
+    margin-bottom: 1.2rem;
+    color: #e6edf3;
+    font-size: 1rem;
   }
 
   a {
     color: #00ccff;
     text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: all 0.3s ease;
   }
 
   a:hover {
-    text-decoration: underline;
+    color: #00ff41;
+    border-bottom-color: #00ff41;
+    text-shadow: 0 0 5px #00ff41;
   }
 
   ul, ol {
-    margin-bottom: 1rem;
+    margin-bottom: 1.2rem;
     padding-left: 2rem;
   }
 
   li {
     margin-bottom: 0.5rem;
+    color: #e6edf3;
   }
 
   code {
-    background-color: #1a1a1a;
+    background-color: #161b22;
     padding: 0.2rem 0.4rem;
     border-radius: 3px;
     font-family: inherit;
+    color: #00ff41;
+    border: 1px solid #30363d;
   }
 
   pre {
-    background-color: #1a1a1a;
-    padding: 1rem;
-    border-radius: 5px;
+    background-color: #161b22;
+    padding: 1.5rem;
+    border-radius: 8px;
     overflow-x: auto;
-    margin-bottom: 1rem;
-    border: 1px solid #333;
+    margin-bottom: 1.5rem;
+    border: 1px solid #30363d;
+    position: relative;
+  }
+
+  pre::before {
+    content: '> ';
+    color: #00ff41;
+    font-weight: bold;
+    position: absolute;
+    top: 0.5rem;
+    left: 0.5rem;
   }
 
   pre code {
     background: none;
     padding: 0;
+    border: none;
+    color: #e6edf3;
   }
 
   blockquote {
-    border-left: 3px solid #00ff00;
-    padding-left: 1rem;
-    margin-bottom: 1rem;
-    color: #00cc00;
+    border-left: 4px solid #00ff41;
+    padding-left: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: #00cc33;
+    font-style: italic;
+    background-color: rgba(0, 255, 65, 0.05);
+    padding: 1rem 1.5rem;
+    border-radius: 0 8px 8px 0;
   }
 
   footer {
-    border-top: 1px solid #00ff00;
-    padding-top: 1rem;
+    border-top: 2px solid #00ff41;
+    padding-top: 1.5rem;
     text-align: center;
-    color: #00cc00;
+    color: #00cc33;
     font-size: 0.9rem;
+    font-weight: 500;
   }
 
   .post-list {
@@ -183,30 +259,194 @@ const { title, description = "thoughts, logs, scripts" } = Astro.props;
 
   .post-item {
     margin-bottom: 2rem;
-    padding: 1rem;
-    border: 1px solid #333;
+    padding: 1.5rem;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    background-color: rgba(22, 27, 34, 0.5);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .post-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: #00ff41;
+    transform: scaleY(0);
+    transition: transform 0.3s ease;
+  }
+
+  .post-item:hover::before {
+    transform: scaleY(1);
+  }
+
+  .post-item:hover {
+    border-color: #00ff41;
+    background-color: rgba(0, 255, 65, 0.05);
+    box-shadow: 0 0 20px rgba(0, 255, 65, 0.1);
+    transform: translateY(-2px);
+  }
+
+  .post-title {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+    color: #00ff41;
+    font-weight: 600;
+  }
+
+  .post-date {
+    color: #00cc33;
+    font-size: 0.9rem;
+    margin-bottom: 0.8rem;
+    font-weight: 500;
+  }
+
+  .post-description {
+    color: #8b949e;
+    line-height: 1.6;
+  }
+
+  .welcome h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 20px #00ff41;
+  }
+
+  .subtitle {
+    font-size: 1.3rem;
+    color: #00cc33;
+    margin-bottom: 2rem;
+    font-weight: 500;
+  }
+
+  .intro p {
+    margin-bottom: 1.2rem;
+    color: #e6edf3;
+    font-size: 1.05rem;
+  }
+
+  .recent-posts h2 {
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid #30363d;
+    padding-bottom: 0.8rem;
+    color: #00ff41;
+  }
+
+  .view-all {
+    margin-top: 2rem;
+    text-align: center;
+  }
+
+  .view-all a {
+    color: #00ff41;
+    font-weight: bold;
+    padding: 0.8rem 1.5rem;
+    border: 1px solid #00ff41;
     border-radius: 5px;
     transition: all 0.3s ease;
   }
 
-  .post-item:hover {
-    border-color: #00ff00;
-    background-color: rgba(0, 255, 0, 0.05);
+  .view-all a:hover {
+    background-color: #00ff41;
+    color: #0d1117;
+    box-shadow: 0 0 15px rgba(0, 255, 65, 0.5);
   }
 
-  .post-title {
-    font-size: 1.3rem;
-    margin-bottom: 0.5rem;
+  .post-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid #30363d;
   }
 
-  .post-date {
-    color: #00cc00;
-    font-size: 0.9rem;
-    margin-bottom: 0.5rem;
+  .post-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 15px #00ff41;
+  }
+
+  .post-meta {
+    color: #00cc33;
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+    font-weight: 500;
   }
 
   .post-description {
-    color: #cccccc;
+    color: #8b949e;
+    font-style: italic;
+    font-size: 1.05rem;
+  }
+
+  .post-content {
+    margin-bottom: 3rem;
+    font-size: 1.05rem;
+    line-height: 1.8;
+  }
+
+  .post-content h1,
+  .post-content h2,
+  .post-content h3,
+  .post-content h4,
+  .post-content h5,
+  .post-content h6 {
+    margin-top: 2.5rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .post-content h1:first-child,
+  .post-content h2:first-child,
+  .post-content h3:first-child,
+  .post-content h4:first-child,
+  .post-content h5:first-child,
+  .post-content h6:first-child {
+    margin-top: 0;
+  }
+
+  .post-content p {
+    margin-bottom: 1.5rem;
+  }
+
+  .post-content ul,
+  .post-content ol {
+    margin-bottom: 1.5rem;
+  }
+
+  .post-content li {
+    margin-bottom: 0.8rem;
+  }
+
+  .post-content blockquote {
+    margin: 2rem 0;
+  }
+
+  .post-content pre {
+    margin: 2rem 0;
+  }
+
+  .post-footer {
+    border-top: 2px solid #30363d;
+    padding-top: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .post-footer a {
+    color: #00ff41;
+    font-weight: bold;
+    padding: 0.8rem 1.5rem;
+    border: 1px solid #00ff41;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    display: inline-block;
+  }
+
+  .post-footer a:hover {
+    background-color: #00ff41;
+    color: #0d1117;
+    box-shadow: 0 0 15px rgba(0, 255, 65, 0.5);
   }
 
   @media (max-width: 768px) {
@@ -215,7 +455,7 @@ const { title, description = "thoughts, logs, scripts" } = Astro.props;
     }
     
     .site-title {
-      font-size: 1.5rem;
+      font-size: 1.8rem;
     }
     
     nav {
@@ -224,7 +464,11 @@ const { title, description = "thoughts, logs, scripts" } = Astro.props;
     }
     
     .post-item {
-      padding: 0.8rem;
+      padding: 1.2rem;
+    }
+
+    .post-header h1 {
+      font-size: 2rem;
     }
   }
 </style> 
